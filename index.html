@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Valentine Site</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #ffe6f2;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .image {
+      max-width: 250px;
+      max-height: 250px;
+      height: auto;
+      width: auto;
+    }
+
+    .question {
+      font-size: 1.5em;
+      margin: 20px 0;
+      color: #ff0066;
+    }
+
+    .yes, .no {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      vertical-align: middle;
+    }
+
+    .yes {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .no {
+      background-color: #ff4d4d;
+      color: white;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .yes, .no {
+        font-size: 0.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img class="image" src="./question.gif">
+    <p class="question">Məni sevirsən?</p>
+    <button class="yes" type="button" onclick="handleYes()">Hə</button>
+    <button class="no" type="button" onclick="handleNo()">Yox</button>
+  </div>
+
+  <script>
+    let noButtonTexts = [
+      "Ciddisən?",
+      "Həqiqətən?",
+      "Nolar gözəlim",
+      "Bunu mənə eləmə",
+      "Ağlayacam :(",
+      "Qəlbimi qırırsan"
+    ];
+    let currentNoButtonTextIndex = 0;
+
+    function handleYes() {
+      document.querySelector('.image').src = './yes.gif';
+
+      document.querySelector('.question').innerText = 'MMMUUUAAAHHH';
+      document.querySelector('.yes').classList.add('hidden');
+      document.querySelector('.no').classList.add('hidden');
+    }
+
+    function handleNo() {
+      let yesButton = document.querySelector('.yes');
+      let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+      yesButton.style.fontSize = (currentSize + 25) + 'px';
+
+      let noButton = document.querySelector('.no');
+      noButton.innerText = noButtonTexts[currentNoButtonTextIndex];
+      currentNoButtonTextIndex = (currentNoButtonTextIndex + 1) % noButtonTexts.length;
+    }
+  </script>
+</body>
+</html>
+
